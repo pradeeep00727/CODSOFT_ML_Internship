@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Genre Classification</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>🎬 Movie Genre Classification</h1>
+
+<p class="subtitle">
+    AI-Powered Movie Genre Predictor
+</p>
+
+        <form action="/predict" method="POST">
+
+            <textarea
+                name="description"
+                placeholder="Enter movie plot summary..."
+                required></textarea>
+
+            <button type="submit">
+                Predict Genre
+            </button>
+
+        </form>
+
+        {% if prediction_text %}
+
+        <div class="result">
+            🎭 Predicted Genre:
+            <span>{{ prediction_text }}</span>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
+{% if prediction_text %}
+
+<div class="result">
+    🎭 Predicted Genre:
+    <span>{{ prediction_text }}</span>
+</div>
+
+<div class="info">
+    Generated using TF-IDF + Naive Bayes Model
+</div>
+
+{% endif %}
