@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Credit Card Fraud Detection</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>💳 Credit Card Fraud Detection</h1>
+        <p class="subtitle">
+            Machine Learning Based Fraud Detection System
+        </p>
+
+        <form action="/predict" method="POST">
+
+            <input type="number"
+                   step="0.01"
+                   name="amount"
+                   placeholder="Transaction Amount"
+                   required>
+
+            <input type="number"
+                   name="city_pop"
+                   placeholder="City Population"
+                   required>
+
+            <select name="category">
+    <option value="10">Personal Care</option>
+    <option value="5">Health & Fitness</option>
+    <option value="9">Misc POS</option>
+    <option value="13">Travel</option>
+    <option value="7">Kids & Pets</option>
+    <option value="12">Shopping (Store)</option>
+    <option value="1">Food & Dining</option>
+    <option value="6">Home</option>
+    <option value="0">Entertainment</option>
+    <option value="11">Shopping Online</option>
+    <option value="8">Misc Online</option>
+    <option value="4">Grocery Store</option>
+    <option value="2">Gas & Transport</option>
+    <option value="3">Grocery Online</option>
+</select>
+
+            <select name="gender">
+                <option value="0">Female</option>
+                <option value="1">Male</option>
+            </select>
+
+            <button type="submit">
+                Predict Transaction
+            </button>
+
+        </form>
+
+        {% if prediction_text %}
+
+        <div class="result {{ result_class }}">
+            {{ prediction_text }}
+        </div>
+
+        <div class="probability">
+            Fraud Probability: {{ probability }}
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
