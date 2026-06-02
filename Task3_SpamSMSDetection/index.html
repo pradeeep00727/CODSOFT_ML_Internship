@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Spam SMS Detector</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Spam SMS Detection</h1>
+
+    <form action="/predict" method="POST">
+
+        <textarea
+            id="messageBox"
+            name="message"
+            placeholder="Enter SMS message..."
+            required>{{ message if message else '' }}</textarea>
+
+        <br>
+
+        <button type="submit">
+            Predict
+        </button>
+
+        <button
+            type="button"
+            onclick="clearText()"
+            class="clear-btn">
+
+            Clear
+
+        </button>
+
+    </form>
+
+    {% if prediction %}
+
+        <div class="result">
+
+            {{ prediction }}
+
+            <br><br>
+
+            <span>
+                Prediction Accuracy: {{ confidence }}%
+            </span>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+<script>
+
+    function clearText() {
+
+        document.getElementById("messageBox").value = "";
+
+    }
+
+</script>
+
+</body>
+</html>
